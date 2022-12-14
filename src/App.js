@@ -13,8 +13,13 @@ function App() {
 
   return (
     <>
-      <div>Test App</div>
+
+      <div>Test API</div>
       <div>{data}</div>
+      <div></div>
+
+      <div>Test Login</div>
+      <a href="/.auth/login/github">Login</a>
     </>
   );
 }
