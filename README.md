@@ -16,3 +16,6 @@ swa start ./build --api-location ./api
 func host start
 swa start  --api-location http://localhost:7071
 ```
+
+
+https://sagesnipsdev.b2clogin.com/sagesnipsdev.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_signupsignin1

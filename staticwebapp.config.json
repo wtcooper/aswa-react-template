@@ -24,7 +24,7 @@
                             "clientSecretSettingName": "AADB2C_PROVIDER_CLIENT_SECRET"
                         },
                         "openIdConnectConfiguration": {
-                            "wellKnownOpenIdConfiguration": "https://sagesnipsdev.b2clogin.com/sagesnipsdev.onmicrosoft.com/B2C_1_signupsignin1/v2.0/.well-known/openid-configuration"
+                            "wellKnownOpenIdConfiguration": "https://sagesnipsdev.b2clogin.com/sagesnipsdev.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_signupsignin1"
                         }
                     },
                     "login": {
