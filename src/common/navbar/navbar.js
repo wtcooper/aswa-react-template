@@ -6,7 +6,8 @@ const NavBar = ({user}) => {
     return (
         <>
         {!user && providers.map((provider) => (
-            <span><a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}><h4>{provider}</h4></a> </span>
+            <span><a key={provider} href={`/.auth/login/${provider}`}><h4>{provider}</h4></a> </span>
+            // <span><a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}><h4>{provider}</h4></a> </span>
         ))}
         {user && (
             <div>
