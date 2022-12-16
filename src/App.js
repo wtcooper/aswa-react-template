@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from 'common/navbar/navbar';
 
 function App() {
-  const [data, setData] = useState('default');
+  // const [data, setData] = useState('default');
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -28,13 +28,13 @@ function App() {
     }
 };  
 
-  useEffect(() => {
-    (async function () {
-      const { text } = await (await fetch(`/api/test_fnx`)).json();
-      setData(text);
-      console.log("FA text: ", text);
-    })();
-  });
+  // useEffect(() => {
+  //   (async function () {
+  //     const { text } = await (await fetch(`/api/test_fnx`)).json();
+  //     setData(text);
+  //     console.log("FA text: ", text);
+  //   })();
+  // });
 
   return (
     <>
