@@ -1,7 +1,7 @@
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
-import App2 from "../App2";
+
 
 function App1() {
     return (

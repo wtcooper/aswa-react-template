@@ -11,7 +11,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import LooksOneIcon from '@mui/icons-material/LooksOne';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import Looks3Icon from '@mui/icons-material/Looks3';
-import AgricultureIcon from '@mui/icons-material/Agriculture';
+
 // render - dashboard
 // const IngestDashboard = Loadable(lazy(() => import('pages/ingest/IngestDashboard')));
 const Landing = Loadable(lazy(() => import('pages/Landing')));

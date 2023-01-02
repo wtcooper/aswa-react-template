@@ -48,7 +48,7 @@ export default function TopNav(props) {
    const userDetails = useSelector(selectUserDetails);
 
   const handleOpenUserMenu = (event) => {
-     console.log(userDetails)
+     console.log(anchorElUser)
     setAnchorElUser(event.currentTarget);
   };
 
