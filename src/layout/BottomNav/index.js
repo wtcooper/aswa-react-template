@@ -24,7 +24,6 @@ const StyledBox = styled(Box)(({ theme }) => ({
 function BottomNav(props) {
    const [open, setOpen] = React.useState(false);
 
-
    const getRoutes = (routes) =>
       routes.map((route) => {
          return (
@@ -39,6 +38,7 @@ function BottomNav(props) {
                <IconButton
                   component={Link}
                   to={`/${route.parentPath}/${route.path}`}
+                  onClick={toggleDrawer(open)}
                   size='large'
                   sx={{
                      p:0
@@ -55,16 +55,6 @@ function BottomNav(props) {
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(!newOpen);
-
-    // // if want to keep FAB but move position during open drawer
-   // const [fabPos, setFabPos] = React.useState(drawerBleeding);
-    // if (!newOpen) {
-    //      setFabPos(`calc(${drawerHeight}% - ${drawerBleeding}px)`)
-    // }
-    // else {
-    //   setFabPos(drawerBleeding)
-    // }
-
   };
 
   return (
@@ -79,7 +69,7 @@ function BottomNav(props) {
 
               position: 'fixed',
               bottom: 20, // could set this via fabPos if wanted to change position on action
-              left: 'calc(50% - 15px)',
+              left: 'calc(50% - 28px)',  // recenter based on width of FAB - 56px
             }}
            >
               <MapIcon sx={{color: 'white'}} />
@@ -114,7 +104,7 @@ function BottomNav(props) {
             }
          }}
       >
-
+        {/*Swipeable edge if want to put this back in*/}
         {/*<StyledBox*/}
         {/*  sx={{*/}
         {/*    position: 'absolute',*/}
@@ -142,10 +132,6 @@ function BottomNav(props) {
           }}
         >
            {getRoutes(appNavList)}
-           {/*<Button variant="contained">Link1</Button>*/}
-           {/*<Button variant="contained">Link2</Button>*/}
-           {/*<Button variant="contained">Link3</Button>*/}
-
         </StyledBox>
       </SwipeableDrawer>
 
