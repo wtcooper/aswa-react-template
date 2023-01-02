@@ -1,11 +1,6 @@
 {
     "routes": [
         {
-            "route": "/login",
-            "allowedRoles": ["anonymous"],
-            "rewrite": "/.auth/login/aadb2c"
-        },
-        {
             "route": "/.auth/login/aadb2c",
             "allowedRoles": ["anonymous"]
         },
