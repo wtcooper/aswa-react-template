@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    userDetails: ''
+   userRole: null,
+   userDetails: null
 }
 
 export const getUserAsync = createAsyncThunk(
@@ -33,5 +34,6 @@ export const userSlice = createSlice({
 export const selectUserDetails = (state) => {
     return state.user.userDetails;
 }
+
 
 export default userSlice.reducer;
