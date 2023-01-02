@@ -8,7 +8,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## option 1: need to replace .app with react version
 ```
+npm run build
 swa start ./build --api-location ./api
+```
+## option 2: live dev server
+```
+npm start
+// open new console:
+swa start  http://localhost:3000 ./build --api-location ./api
 ```
 
 ## option 2:

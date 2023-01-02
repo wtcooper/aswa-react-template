@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
    userRole: null,
-   userDetails: null
+   userDetails: 'Wade'
 }
 
 export const getUserAsync = createAsyncThunk(
@@ -26,6 +26,9 @@ export const userSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getUserAsync.fulfilled, (state, action) => {
             // put user into state
+           console.log("In getUserAsync")
+           console.log(state.userDetails)
+
             state.userDetails = action.payload;
         });
     }

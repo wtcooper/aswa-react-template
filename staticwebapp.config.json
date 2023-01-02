@@ -8,9 +8,12 @@
         {
             "route": "/.auth/login/aadb2c",
             "allowedRoles": ["anonymous"]
+        },
+        {
+          "route": "/app*",
+          "allowedRoles": ["authenticated"]
         }
     ],
-
     "navigationFallback": {
         "rewrite": "/index.html"
     },
