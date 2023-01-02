@@ -5,7 +5,14 @@ import Button from "@mui/material/Button";
 import {AppIcon} from "../../app/appBrand";
 import * as React from "react";
 
+import { useSelector} from "react-redux";
+import { selectUserDetails} from "store/users/userSlice";
+
 function Index() {
+
+   const userDetails = useSelector(selectUserDetails);
+
+
    return (
       <Container component="main" maxWidth="md">
          <Box
@@ -26,7 +33,7 @@ function Index() {
             </Typography>
             <Button
                variant="contained"
-               href='/app'
+               href={!userDetails ? '/.auth/login/aadb2c?post_login_redirect_uri=/app' : '/app'}
                size='large'
                startIcon={<AppIcon/>}
             >
