@@ -23,7 +23,6 @@ function App3() {
         >
             App3
          </Typography>
-
          </Box>
 
           <Grid item xs={12}>

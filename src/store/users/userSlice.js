@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
    userRole: null,
-   userDetails: 'Wade'
+   clientPrincipal: null,
+   userDetails: null
 }
 
 export const getUserAsync = createAsyncThunk(
@@ -14,7 +15,7 @@ export const getUserAsync = createAsyncThunk(
         const payload = await response.json();
         // Retrieve the clientPrincipal (current user)
         const { clientPrincipal } = payload;
-        if (clientPrincipal) return clientPrincipal.userDetails;
+        if (clientPrincipal) return clientPrincipal;
         else return '';
     }
 )
@@ -28,8 +29,8 @@ export const userSlice = createSlice({
             // put user into state
            console.log("In getUserAsync")
            console.log(state.userDetails)
-
-            state.userDetails = action.payload;
+            state.clientPrincipal = action.payload;
+            state.userDetails = action.payload.userDetails;
         });
     }
 });
@@ -38,5 +39,8 @@ export const selectUserDetails = (state) => {
     return state.user.userDetails;
 }
 
+export const selectClientPrincipal = (state) => {
+    return state.user.clientPrincipal;
+}
 
 export default userSlice.reducer;

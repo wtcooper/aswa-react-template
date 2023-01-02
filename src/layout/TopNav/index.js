@@ -4,7 +4,6 @@
  3) Bottom FAB with expandable
 * */
 
-
 import * as React from 'react';
 import {Link, Outlet} from 'react-router-dom';
 
@@ -15,21 +14,11 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Slide from '@mui/material/Slide';
 
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import Popover from "@mui/material/Popover";
-
 import {appTitle} from "app/appBrand";
 import {AppIcon} from "app/appBrand";
 import IconButton from "@mui/material/IconButton";
 
 import Profile from "./Profile";
-
-import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
-
-import {useSelector} from "react-redux";
-import {selectUserDetails} from "store/users/userSlice";
 
 function HideOnScroll(props) {
    const {children} = props;
@@ -50,21 +39,6 @@ function HideOnScroll(props) {
 }
 
 export default function TopNav(props) {
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
-  //  const userDetails = useSelector(selectUserDetails);
-  //
-  // const handleOpenUserMenu = (event) => {
-  //    console.log(anchorElUser)
-  //   setAnchorElUser(event.currentTarget);
-  // };
-  //
-  //   const handleCloseUserMenu = () => {
-  //       setAnchorElUser(null);
-  //   };
-  //
-  //   const open = Boolean(anchorEl);
-  //   const id = open ? "simple-popover" : undefined;
-
 
    return (
       <>
@@ -86,39 +60,7 @@ export default function TopNav(props) {
                       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {appTitle}
                       </Typography>
-
                      <Profile/>
-
-                       {/*{!userDetails*/}
-                       {/*    ?*/}
-                       {/*   <Tooltip title="Login">*/}
-                       {/*       <Button*/}
-                       {/*          href="/.auth/login/aadb2c?post_login_redirect_uri=.referrer"*/}
-                       {/*          // variant="contained"*/}
-                       {/*          // color="blackAndWhite"*/}
-                       {/*          sx={{*/}
-                       {/*             color: 'white'*/}
-                       {/*          }}*/}
-                       {/*       >*/}
-                       {/*          Login*/}
-                       {/*       </Button>*/}
-                       {/*   </Tooltip>*/}
-                       {/*    :*/}
-                       {/*    <Tooltip title={userDetails}>*/}
-                       {/*      <IconButton*/}
-                       {/*         onClick={handleOpenUserMenu}*/}
-                       {/*         sx={{*/}
-                       {/*            p: 0*/}
-                       {/*          }}*/}
-                       {/*      >*/}
-                       {/*        <Avatar*/}
-                       {/*           alt="User"*/}
-                       {/*           // src="/static/images/avatar/2.jpg"*/}
-                       {/*        />*/}
-                       {/*      </IconButton>*/}
-                       {/*    </Tooltip>*/}
-                       {/*}*/}
-
 
                     </Toolbar>
                   </AppBar>
