@@ -238,7 +238,8 @@ export default createTheme({
       fontWeight: 600
     },
     // fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    // fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Kodchasan", sans-serif',
     body1: {
       fontSize: '1rem',
       fontWeight: 400,

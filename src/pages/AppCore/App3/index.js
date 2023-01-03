@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 function App3() {
     return (
-       <Container component="main" maxWidth="md">
+       <Container component="main" >
        <Box
             sx={{
             display: 'flex',
@@ -18,40 +18,56 @@ function App3() {
           component="h1"
           variant="h2"
           align="center"
-          color="text.primary"
+          color="text.light"
           gutterBottom
         >
             App3
          </Typography>
          </Box>
 
-          <Grid item xs={12}>
+          <Grid item xs={12}
+               sx={{
+                  m: 3,
+                  display: 'flex',
+                  justifyContent: 'center',
+               }}>
             <Paper
                sx={{
                   height: 350,
-                  width: 300
+                  width: '80%'
                }}
             >
                <Typography>Test</Typography>
             </Paper>
           </Grid>
 
-          <Grid item xs={12}>
+           <Grid item xs={12}
+               sx={{
+                  m: 3,
+                  display: 'flex',
+                  justifyContent: 'center',
+               }}>
             <Paper
                sx={{
                   height: 350,
-                  width: 300
+                  width: '80%'
                }}
             >
                <Typography>Test</Typography>
             </Paper>
           </Grid>
 
-          <Grid item xs={12}>
+
+          <Grid item xs={12}
+               sx={{
+                  m: 3,
+                  display: 'flex',
+                  justifyContent: 'center',
+               }}>
             <Paper
                sx={{
                   height: 350,
-                  width: 300
+                  width: '80%'
                }}
             >
                <Typography>Test</Typography>

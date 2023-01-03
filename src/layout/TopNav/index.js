@@ -6,7 +6,8 @@
 
 import * as React from 'react';
 import {Link, Outlet} from 'react-router-dom';
-
+import { alpha } from "@mui/material";
+import {useTheme} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -39,13 +40,15 @@ function HideOnScroll(props) {
 }
 
 export default function TopNav(props) {
+   const theme = useTheme();
 
    return (
       <>
          <Box sx={{ flexGrow: 1 }}>
             <HideOnScroll {...props}>
-                  <AppBar position="static">
-                    <Toolbar>
+            <AppBar elevation={0} sx={{backgroundColor: theme.palette.primary.dark}}>
+                  {/*<AppBar  elevation={0} sx={{backgroundColor: alpha(theme.palette.primary.main, 0.5)}}>*/}
+                    <Toolbar sx={{ml: 3, mr: 3}}>
                       <IconButton
                         component={Link}
                         to={`/`}

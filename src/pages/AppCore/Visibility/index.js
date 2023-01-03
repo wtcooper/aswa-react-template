@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 
 function Visibility() {
     return (
-       <Container component="main" maxWidth="md">
+       <Container component="main">
        <Box
             sx={{
             display: 'flex',
@@ -16,7 +16,7 @@ function Visibility() {
           component="h1"
           variant="h2"
           align="center"
-          color="text.primary"
+          color="text.light"
           gutterBottom
         >
             Glass Pane

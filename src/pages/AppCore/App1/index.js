@@ -8,41 +8,45 @@ import Paper from "@mui/material/Paper";
 
 
 function App1() {
-      const clientPrincipal = useSelector(selectClientPrincipal);
+   const clientPrincipal = useSelector(selectClientPrincipal);
 
-    return (
-       <Container component="main" maxWidth="md">
-       <Box
+   return (
+      <Container component="main" >
+         <Box
             sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
->
-        <Typography
-          component="h1"
-          variant="h2"
-          align="center"
-          color="text.primary"
-          gutterBottom
-        >
-            App1
-         </Typography>
+               display: 'flex',
+               flexDirection: 'column',
+               alignItems: 'center',
+            }}
+         >
+            <Typography
+               component="h1"
+               variant="h2"
+               align="center"
+               color="text.light"
+               gutterBottom
+            >
+               App1
+            </Typography>
          </Box>
 
-          <Grid item xs={12}>
+         <Grid item xs={12}
+               sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+               }}>
             <Paper
                sx={{
                   height: 350,
-                  // width: 300
+                  width: '80%'
                }}
             >
                <Typography>{JSON.stringify(clientPrincipal)}</Typography>
             </Paper>
-          </Grid>
+         </Grid>
 
-       </Container>
-    );
+      </Container>
+   );
 }
 
 

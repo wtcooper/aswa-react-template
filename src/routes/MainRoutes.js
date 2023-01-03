@@ -65,21 +65,21 @@ export const appNavList = [
       parentPath: 'app',
       name: 'App1',
       element: <App1/>,
-      icon: <LooksOneIcon fontSize='large'/>,
+      icon: <LooksOneIcon fontSize='large' sx={{color: "primary.main"}}/>,
    },
    {
       path: 'app2',
       parentPath: 'app',
       name: 'App2',
       element: <App2/>,
-      icon: <LooksTwoIcon fontSize='large'/>,
+      icon: <LooksTwoIcon fontSize='large' sx={{color: "primary.main"}}/>,
    },
    {
       path: 'app3',
       parentPath: 'app',
       name: 'App3',
       element: <App3/>,
-      icon: <Looks3Icon fontSize='large'/>,
+      icon: <Looks3Icon fontSize='large' sx={{color: "primary.main"}}/>,
    },
 
 ]
