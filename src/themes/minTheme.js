@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const themeConfig = {
    typography: {
