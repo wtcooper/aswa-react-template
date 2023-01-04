@@ -1,6 +1,4 @@
-import { createTheme } from '@mui/material';
-
-export const themeConfig = {
+export const darkTheme = {
    typography: {
 
     // fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
@@ -90,5 +88,3 @@ export const themeConfig = {
         }
     }
 }
-
-export default createTheme(themeConfig);

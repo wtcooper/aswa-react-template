@@ -26,7 +26,7 @@ function Index() {
                component="h1"
                variant="h2"
                align="center"
-               color="text.light"
+               color="text.primary"
                gutterBottom
             >
                Landing
@@ -36,6 +36,10 @@ function Index() {
                href={!userDetails ? '/.auth/login/aadb2c?post_login_redirect_uri=/app' : '/app'}
                size='large'
                startIcon={<AppIcon/>}
+               sx={{
+                  bgcolor: "secondary.dark",
+                  color: "white"
+               }}
             >
                App
             </Button>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import { styled } from '@mui/material/styles';
+import {styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MapIcon from '@mui/icons-material/Map';
@@ -22,6 +22,8 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 
 function BottomNav(props) {
+   const theme = useTheme();
+
    const [open, setOpen] = React.useState(false);
 
    const getRoutes = (routes) =>
@@ -65,14 +67,13 @@ function BottomNav(props) {
              onClick={toggleDrawer(open)}
               sx={{
               zIndex: 1400,
-              bgcolor: 'primary.main',
-
+              bgcolor: 'secondary.dark',
               position: 'fixed',
               bottom: 20, // could set this via fabPos if wanted to change position on action
               left: 'calc(50% - 28px)',  // recenter based on width of FAB - 56px
             }}
            >
-              <MapIcon sx={{color: 'white'}} />
+              <MapIcon color="white" />
            </Fab>
          </Zoom>
          : null
@@ -91,6 +92,8 @@ function BottomNav(props) {
          }}
         PaperProps={{
           sx: {
+             backgroundColor: theme.palette.background.light,
+
             // height: `calc(${drawerHeightPerc}% - ${drawerBleeding}px)`,
             height: drawerHeight,
              overflow: 'visible'
@@ -99,6 +102,7 @@ function BottomNav(props) {
 
          //  see here for below targeting specific class: https://mui.com/material-ui/customization/how-to-customize/#overriding-with-classes
          sx={{
+
             '& .MuiBackdrop-root': {
                backgroundColor: 'transparent'
             }
@@ -122,6 +126,7 @@ function BottomNav(props) {
         {/*  /!* <Box sx={{ p: 1 }}></Box>*!/*/}
         {/*</StyledBox>*/}
         <StyledBox
+           color="background"
           sx={{
             height: '100%',
             overflow: 'auto',

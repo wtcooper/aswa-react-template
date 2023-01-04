@@ -6,7 +6,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import userReducer from "store/users/userSlice";
-
+import genericDataReducer from "store/genericData/genericDataSlice"
 
 const persistConfig = {
   key: 'root',
@@ -15,6 +15,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({ 
     user: userReducer,
+    genericData: genericDataReducer
     // notes: NotesReducer
   })
 

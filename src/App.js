@@ -3,10 +3,11 @@ import React from 'react';
 import {ThemeProvider} from "@mui/material/styles";
 import CssBaseline from '@mui/material/CssBaseline';
 
-// import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme } from '@mui/material';
-import {themeConfig} from "themes/minTheme";
-// import theme from "themes/minTheme";
+import {darkTheme} from "themes/darkTheme";
+import {lightTheme} from "themes/lightThemeAlt";
+import {themeMode} from "app/appBrand";
 
 import Routes from 'routes';
 import ScrollTop from "components/ScrollTop";
@@ -16,12 +17,11 @@ import './App.css';
 
 function App() {
 
-   // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-   // const themeUpdate = {...themeConfig, palette: {...themeConfig.palette, mode: prefersDarkMode ? 'dark' : 'light'} }
-   // const themeUpdate = {...themeConfig, palette: {...themeConfig.palette, mode: 'light'} }
-  // const theme = React.useMemo(() => createTheme(themeUpdate), [prefersDarkMode]);
+   // choose dark mode or light mode based on system or manual setting
+   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+   const darkMode = themeMode === "system" ? prefersDarkMode : themeMode === "dark";
+   const theme = createTheme(darkMode ? darkTheme : lightTheme);
 
-  const theme = createTheme(themeConfig);
 
     return (
         <ThemeProvider theme={theme}>

@@ -16,7 +16,7 @@ function About() {
           component="h1"
           variant="h2"
           align="center"
-          color="text.light"
+          color="text.primary"
           gutterBottom
         >
             Glass Pane
