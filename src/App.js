@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme } from '@mui/material';
 import {darkTheme} from "themes/darkTheme";
-import {lightTheme} from "themes/lightThemeAlt";
+import {lightTheme} from "themes/lightTheme";
 import {themeMode} from "app/appBrand";
 
 import Routes from 'routes';
