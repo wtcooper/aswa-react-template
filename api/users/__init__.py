@@ -1,40 +1,31 @@
 import azure.functions as func
 import logging
-import os
 import json
+import os
+import base64
+from pymongo import MongoClient
+
+# sys.path.append(
+#     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 
 
-def run_all(msg_dict):
-    logging.info(f"In run_all, msg_dict: {msg_dict}")
-    return {"status": "success"}
+def get_user_data(collection, client_principal):
+    userId = client_principal['userId']
+    user = collection.find_one({"userId": userId})
 
-
-def validate_data_pack(msg_dict):
-    """
-    Validates the data_pack to ensure calculations will run correctly
-    :param msg_dict:
-    :return:
-    """
-    message = 'valid'
-    valid = True
-
-    # TODO - add in message validations here
-    if 'param1' not in msg_dict:
-        message = f"`param1` must be in message"
-        valid = False
-    if 'param2' not in msg_dict:
-        message = f"`param2` must be in message"
-        valid = False
-
-
-    # throw error if invalid
-    if not valid:
-        logging.info("data validation FAILED")
-        print("data validation FAILED")
-        raise ValueError(message)
+    if user is not None:
+        logging.info(f"User exists")
+        return user['data']
     else:
-        logging.info("data validation PASSED")
-        print("data validation PASSED")
+        logging.info(f"New user, creating")
+        client_principal['data'] = {}  # empty dict for data to go into
+
+        # todo - turn on
+        # collection.insert_one(client_principal)
+
+        return client_principal['data']
+
+
 
 
 def main(req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
@@ -47,17 +38,27 @@ def main(req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
     function_name = context.function_name
     logging.info(f"\n\n{'=' * 20} Starting {function_name} in {function_directory} {'=' * 20}")
 
-    for k,v in req.headers.items():
-        logging.info(f"{k} : {v}")
+    #####################################
+    # Headers
+    #####################################
+
+    # for k, v in req.headers.items():
+    #     logging.info(f"{k} : {v}")
+
+    #####################################
+    # Method
+    #####################################
+
+    method = req.method
+    logging.info(f"request method: {method}")
 
     #####################################
     # REST body and parameters
     #####################################
 
-    # TODO - depending on API call get the correct inputs
-    # get the message body
-    msg_params = req.params
-    logging.info(f"parameters: {msg_params}")
+    # # get the message body
+    # msg_params = req.params
+    # logging.info(f"parameters: {msg_params}")
 
     # # get the message body if json
     # msg_json = req.get_json()
@@ -67,23 +68,36 @@ def main(req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
     # msg_body = req.get_body()
     # logging.info(f"body: {msg_body}")
 
-
     #####################################
     # environment variables
-    # set in portal: Configuration > Application settings
     #####################################
 
-    # TODO - add any needed env variates in the Portal (connection strings from KeyVault, feature flags, etc)
-    test = os.environ['FUNCTIONS_WORKER_RUNTIME']
-    logging.info(f"test env variables (FUNCTIONS_WORKER_RUNTIME): {test}")
+    conn_string = os.environ['COSMOS_CONN_STRING']
 
+    #####################################
+    # Run core logic
+    #####################################
 
     try:
-        validate_data_pack(msg_params)
-        return_msg = run_all(msg_params)
-        logging.error(f'return_msg: {return_msg}')
 
-        return func.HttpResponse(json.dumps(return_msg), status_code=200)
+        #####################################
+        # Get the User detials
+        #####################################
+        client_principal = req.headers.get('X-MS-CLIENT-PRINCIPAL')
+        client_principal = json.loads(base64.b64decode(client_principal).decode())
+        logging.info('client_principal:')
+        logging.info(client_principal)
+
+        # Connect to the DB
+        DB_NAME = 'sagesnips-dev'
+        COLLECTION_NAME = 'users'
+        client = MongoClient(conn_string)
+        db = client[DB_NAME]
+        collection = db[COLLECTION_NAME]
+
+        user = get_user_data(collection, client_principal)
+
+        return func.HttpResponse(json.dumps(user), status_code=200)
 
     except Exception as e:
         logging.error(f'Error - failed {function_name} in main - {e}')
@@ -96,78 +110,25 @@ if __name__ == '__main__':
     # For local testing only
     ##############################################
 
-    msg_params = dict(
-        param1='test1',
-        param2='test2'
-    )
+    # Opening JSON file
+    f = open('api/local.settings.json')
 
-    function_directory = f"{os.getcwd()}/footprint_eeio_mapping"
-    pretrained_model = 'all-mpnet-base-v2'
-    threshold = 0.4
+    # returns JSON object as
+    # a dictionary
+    data = json.load(f)
+    client_principal = {'userId': 'b3a748c668ef69529c2ffc6838947df2', 'userRoles': ['anonymous', 'authenticated'], 'identityProvider': 'aadb2c', 'userDetails': 'wcooper'}
+    conn_string = data['Values']['COSMOS_CONN_STRING']
 
     try:
-        validate_data_pack(msg_params)
-        return_msg = run_all(msg_params)
-        print(f"return message {return_msg}")
+        # Connect to the DB
+        DB_NAME = 'sagesnips-dev'
+        COLLECTION_NAME = 'users'
+        client = MongoClient(conn_string)
+        db = client[DB_NAME]
+        collection = db[COLLECTION_NAME]
+
+        user = get_user_data(collection, client_principal)
+        print(f"user {user}")
 
     except Exception as e:
         print(f'Error - failed in main - {e}')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import logging
-import json
-import azure.functions as func
-
-def add_user(msg_dict):
-
-    pass
-
-
-def main(req: func.HttpRequest) -> func.HttpResponse:
-
-    logging.info('Python HTTP trigger function processed a request.')
-
-    method = req.method
-
-    if method == 'POST':
-        pass
-    elif method == 'GET':
-        pass
-    elif method == 'PUT':
-        pass
-    elif method == 'DELETE':
-        pass
-
-
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
-
-    if name:
-        return func.HttpResponse(json.dumps({"text": f"Hello, {name}"}))
-    else:
-        return func.HttpResponse(
-             json.dumps({"text": "Test output"}),
-             status_code=200
-        )

@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 
 import {useDispatch, useSelector} from "react-redux";
-import {getUserAsync, selectUserDetails} from "store/users/userSlice";
+import {getUserDetailsAsync, selectUserDetails} from "store/users/userSlice";
 
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -38,7 +38,7 @@ const Profile = () => {
    const userDetails = useSelector(selectUserDetails);
 
    useEffect(() => {
-      dispatch(getUserAsync());
+      dispatch(getUserDetailsAsync());
    }, [dispatch]);
 
 

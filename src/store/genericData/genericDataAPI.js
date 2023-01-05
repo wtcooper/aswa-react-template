@@ -3,7 +3,9 @@ const baseUrl = '/api/test_headers';
 
 export const genericDataService = {
     header: async (name) => {
-        const response = await axios.get(baseUrl, {params: {name: name}});
+        // const response = await axios.get(baseUrl, {params: {name: name}});
+        const response = await axios.post(baseUrl, {test_body: {name: name}});
+        // const response = await axios.post(baseUrl, {test_body: {name: name}}, {params: {name: name}});
         return response.data;
     },
     save: async (data) => {

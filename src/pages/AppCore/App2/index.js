@@ -19,9 +19,6 @@ function App2() {
    const testHeader = useSelector(selectTestHeader);
    const userDetails = useSelector(selectUserDetails);
 
-   useEffect(() => {
-   }, [dispatch]);
-
 
      const fetchHeaderData = (userDetails) => () => {
       dispatch(getHeaderAsync(userDetails));

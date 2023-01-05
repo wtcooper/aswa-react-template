@@ -1,13 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import {userService} from "./userAPI";
 
 const initialState = {
    userRole: null,
    clientPrincipal: null,
-   userDetails: null
+   userDetails: null,
+   userData: null
 }
 
-export const getUserAsync = createAsyncThunk(
-    'user/get',
+export const getUserDetailsAsync = createAsyncThunk(
+    'user/getDetails',
     async () => {
         // Retrieve response from /.auth/me
         const response = await fetch('/.auth/me');
@@ -20,23 +22,40 @@ export const getUserAsync = createAsyncThunk(
     }
 )
 
+export const getUserDataAsync = createAsyncThunk(
+    'user/getData',
+    async () => {
+        return await userService.getUserData();
+    }
+)
+
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getUserAsync.fulfilled, (state, action) => {
+        builder
+           .addCase(getUserDetailsAsync.fulfilled, (state, action) => {
             // put user into state
-           console.log("In getUserAsync")
-           console.log(state.userDetails)
+           console.log("In getUserDetailsAsync")
             state.clientPrincipal = action.payload;
             state.userDetails = action.payload.userDetails;
-        });
+        })
+           .addCase(getUserDataAsync.fulfilled, (state, action) => {
+            // put user into state
+           console.log("In getUserDataAsync")
+            state.userData = action.payload;
+        })
     }
 });
 
 export const selectUserDetails = (state) => {
     return state.user.userDetails;
+}
+
+export const selectUserData = (state) => {
+    return state.user.userData;
 }
 
 export const selectClientPrincipal = (state) => {
