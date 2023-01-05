@@ -8,7 +8,6 @@ from pymongo import MongoClient
 # sys.path.append(
 #     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 
-
 def get_user_data(collection, client_principal):
     userId = client_principal['userId']
     user = collection.find_one({"userId": userId})
@@ -19,10 +18,7 @@ def get_user_data(collection, client_principal):
     else:
         logging.info(f"New user, creating")
         client_principal['data'] = {}  # empty dict for data to go into
-
-        # todo - turn on
-        # collection.insert_one(client_principal)
-
+        collection.insert_one(client_principal)
         return client_principal['data']
 
 
