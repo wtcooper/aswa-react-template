@@ -3,6 +3,7 @@ import {Outlet} from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
+import Editor from "components/Editor";
 
 function AppCore() {
     return (
@@ -10,6 +11,7 @@ function AppCore() {
        <Container component="main" >
        <Box
             sx={{
+               mb: 5,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -26,6 +28,7 @@ function AppCore() {
          </Typography>
 
          </Box>
+          <Editor/>
        </Container>
        <Outlet/>
        </>

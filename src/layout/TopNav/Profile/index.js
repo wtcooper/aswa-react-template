@@ -65,10 +65,8 @@ const Profile = () => {
                <Button
                   href="/.auth/login/aadb2c?post_login_redirect_uri=/app"
                   // variant="contained"
-                  // color="blackAndWhite"
-                  sx={{
-                     color: 'white'
-                  }}
+                  color="white"
+
                >
                   Login
                </Button>
