@@ -5,8 +5,6 @@ import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 // import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-// import TreeViewPlugin from "./plugins/TreeViewPlugin";
-import ToolbarPlugin from "./plugins/ToolbarPlugin";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import { ListItemNode, ListNode } from "@lexical/list";
@@ -16,10 +14,18 @@ import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { TRANSFORMERS } from "@lexical/markdown";
+import {OnChangePlugin} from '@lexical/react/LexicalOnChangePlugin';
 
+// import TreeViewPlugin from "./plugins/TreeViewPlugin";
+// import ToolbarPlugin from "./plugins/ToolbarPlugin";
+import ToolbarPlugin from "./plugins/ToolbarPlugin";
 import ListMaxIndentLevelPlugin from "./plugins/ListMaxIndentLevelPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
+
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+// import {useTheme} from "@mui/material/styles";
 
 import './editor.css';
 
@@ -28,6 +34,7 @@ function Placeholder() {
 }
 
 const editorConfig = {
+  editorState: '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}',
   // The editor theme
   theme: ExampleTheme,
   // Handling of errors during update
@@ -50,17 +57,53 @@ const editorConfig = {
   ]
 };
 
-export default function Editor() {
+
+export default function EditorLex(props) {
+   // const theme = useTheme();
+
+  const editorStateRef = props.editorState;
+
+
   return (
+     <Grid item xs={12}
+     >
     <LexicalComposer initialConfig={editorConfig}>
-      <div className="editor-container">
+      <Box
+         className="editor-container"
+         // sx={{
+         //    width: '90%',
+         //    borderRadius: '2px',
+         //   fontWeight: 400,
+         //   textAlign: 'left',
+         //   borderTopLeftRadius: '10px',
+         //   borderTopRightRadius: '10px',
+         //   border: `2px solid ${theme.palette.grey[300]}`,
+         //   // maxWidth: '550px',
+         // }}
+      >
         <ToolbarPlugin />
-        <div className="editor-inner">
+        <Box
+           className="editor-inner"
+         // sx={{
+         //    width: '90%',
+         //    backgroundColor: '#fff',
+         //   // minHeight: '184px',
+         //   // maxHeight: '2500px',
+         //   resize: 'none',
+         //   fontSize: '1rem',
+         //   position: 'relative',
+         //   tabSize: '1',
+         //   outline: 0,
+         //   // padding: theme.spacing(2, 1.5),
+         //   // overflowY: 'scroll',
+         // }}
+        >
           <RichTextPlugin
             contentEditable={<ContentEditable className="editor-input" />}
             placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
           />
+         <OnChangePlugin onChange={editorState => editorStateRef.current = editorState} />
           {/*<HistoryPlugin />*/}
           {/*<TreeViewPlugin />*/}
           <AutoFocusPlugin />
@@ -70,8 +113,12 @@ export default function Editor() {
           <AutoLinkPlugin />
           <ListMaxIndentLevelPlugin maxDepth={7} />
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
-        </div>
-      </div>
+        </Box>
+      </Box>
+
     </LexicalComposer>
+     </Grid>
+
+
   );
 }

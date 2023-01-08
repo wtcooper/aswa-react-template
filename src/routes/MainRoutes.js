@@ -8,9 +8,9 @@ import BottomNav from 'layout/BottomNav';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-import LooksOneIcon from '@mui/icons-material/LooksOne';
-import LooksTwoIcon from '@mui/icons-material/LooksTwo';
-import Looks3Icon from '@mui/icons-material/Looks3';
+import CreateIcon from '@mui/icons-material/Create';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 
 // render - dashboard
 // const IngestDashboard = Loadable(lazy(() => import('pages/ingest/IngestDashboard')));
@@ -20,9 +20,9 @@ const Register = Loadable(lazy(() => import('pages/Register')));
 const AppCore = Loadable(lazy(() => import('pages/AppCore')));
 const Visibility = Loadable(lazy(() => import('pages/AppCore/Visibility')));
 const Settings = Loadable(lazy(() => import('pages/AppCore/Settings')));
-const App1 = Loadable(lazy(() => import('pages/AppCore/App1')));
-const App2 = Loadable(lazy(() => import('pages/AppCore/App2')));
-const App3 = Loadable(lazy(() => import('pages/AppCore/App3')));
+const TextEntry = Loadable(lazy(() => import('pages/AppCore/TextEntry')));
+const Sketch = Loadable(lazy(() => import('pages/AppCore/Sketch')));
+const DBUser = Loadable(lazy(() => import('pages/AppCore/DBUser')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -61,26 +61,26 @@ export const appSettingsList = [
 
 export const appNavList = [
    {
-      path: 'app1',
+      path: 'entry',
       parentPath: 'app',
-      name: 'App1',
-      element: <App1/>,
-      icon: <LooksOneIcon fontSize='large' sx={{color: "secondary.dark"}}/>,
+      name: 'Entry',
+      element: <TextEntry/>,
+      icon: <CreateIcon fontSize='large' sx={{color: "secondary.dark"}}/>,
    },
    {
-      path: 'app2',
+      path: 'sketch',
       parentPath: 'app',
-      name: 'App2',
-      element: <App2/>,
-      icon: <LooksTwoIcon fontSize='large' sx={{color: "secondary.dark"}}/>,
+      name: 'Sketch',
+      element: <Sketch/>,
+      icon: <VideogameAssetIcon fontSize='large' sx={{color: "secondary.dark"}}/>,
    },
    {
-      path: 'app3',
+      path: 'user',
       parentPath: 'app',
-      name: 'App3',
-      element: <App3/>,
-      icon: <Looks3Icon fontSize='large' sx={{color: "secondary.dark"}}/>,
-   },
+      name: 'User',
+      element: <DBUser/>,
+      icon: <SentimentSatisfiedAltIcon fontSize='large' sx={{color: "secondary.dark"}}/>,
+   }
 
 ]
 

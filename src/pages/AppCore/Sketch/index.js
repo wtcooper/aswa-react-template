@@ -13,7 +13,7 @@ import {selectUserDetails} from "store/users/userSlice";
 
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 
-function App2() {
+function Sketch() {
    const dispatch = useDispatch();
    const testHeader = useSelector(selectTestHeader);
    const userDetails = useSelector(selectUserDetails);
@@ -40,7 +40,7 @@ function App2() {
           color="text.primary"
           gutterBottom
         >
-            App2
+            Sketch
          </Typography>
 
           <Button
@@ -86,4 +86,4 @@ function App2() {
 }
 
 
-export default App2;
+export default Sketch;
